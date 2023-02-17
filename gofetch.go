@@ -37,7 +37,7 @@ func FetchAsync(tickers []string) {
 	for i, ticker := range tickers {
 		go func(i int, ticker string) {
 			price := fetchPrevClose(ticker)
-			fmt.Println(i, ticker, price)
+			fmt.Println(i, ticker, price, "---")
 			wg.Done()
 		}(i, ticker)
 	}
