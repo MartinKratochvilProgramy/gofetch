@@ -18,7 +18,7 @@ Add this import line to the file you're working in:
 import "github.com/MartinKratochvilProgramy/gofetch"
 ```
 
-Define your tickers in a string array, ticker names should correspond to the names found on yahoo.finance.com, eg:
+Define your tickers in a string array, ticker names should correspond to the names found on yahoo.finance.com. Function gofetch.FetchAsync() returns array of structs TickerInfo{ticker string, price float64}. To get the ticker name or price, use the GetTicker() or GetPrice() functions.
 
 ```Go
 tickers := []string{"aapl", "msft", "tsla", "amzn", "goog", "nflx", "meta"}
@@ -30,7 +30,7 @@ for _, item := range info {
 }
 ```
 
-The above code prints ticker names and prices into console:
+The above code prints ticker names and previous day close prices into console:
 ```shell
 meta 177.16
 goog 97.1
@@ -39,4 +39,18 @@ msft 269.32
 amzn 101.16
 nflx 361.42
 tsla 214.24
+```
+
+## Using the FetchPrevClose function
+
+If you do not wish to load ticker information into an array of structs, use the gofetch.FetchPrevClose() which returns previous day close price for individual stock.
+
+```Go
+info := gofetch.FetchPrevClose("aapl")
+fmt.Println(info.GetTicker(), info.GetPrice())
+```
+
+Returns:
+```shell
+aapl 155.33
 ```
