@@ -1,7 +1,6 @@
 package gofetch
 
 import (
-	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -30,16 +29,25 @@ func fetchPrevClose(ticker string) float64 {
 	return result
 }
 
-func FetchAsync(tickers []string) {
+type TickerInfo struct {
+	ticker string
+	price  float64
+}
+
+func FetchAsync(tickers []string) []TickerInfo {
 	var wg sync.WaitGroup
 	wg.Add(len(tickers))
+
+	var res []TickerInfo
 
 	for i, ticker := range tickers {
 		go func(i int, ticker string) {
 			price := fetchPrevClose(ticker)
-			fmt.Println(i, ticker, price, "---")
+			res = append(res, TickerInfo{ticker, price})
 			wg.Done()
 		}(i, ticker)
 	}
 	wg.Wait()
+
+	return res
 }
