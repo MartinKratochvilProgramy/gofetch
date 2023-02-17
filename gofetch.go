@@ -15,11 +15,11 @@ type TickerInfo struct {
 	price  float64
 }
 
-func (t TickerInfo) getTicker() string {
+func (t TickerInfo) Ticker() string {
 	return t.ticker
 }
 
-func (t TickerInfo) getPrice() float64 {
+func (t TickerInfo) Price() float64 {
 	return t.price
 }
 
