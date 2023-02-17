@@ -43,7 +43,7 @@ func FetchAsync(tickers []string) []TickerInfo {
 	for i, ticker := range tickers {
 		go func(i int, ticker string) {
 			price := fetchPrevClose(ticker)
-			res = append(res, TickerInfo{ticker, price})
+			res = append(res, TickerInfo{ticker: ticker, price: price})
 			wg.Done()
 		}(i, ticker)
 	}
