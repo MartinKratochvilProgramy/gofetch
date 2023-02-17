@@ -21,13 +21,13 @@ import "github.com/MartinKratochvilProgramy/gofetch"
 Define your tickers in a string array, ticker names should correspond to the names found on yahoo.finance.com, eg:
 
 ```Go
-	tickers := []string{"aapl", "msft", "tsla", "amzn", "goog", "nflx", "meta"}
+tickers := []string{"aapl", "msft", "tsla", "amzn", "goog", "nflx", "meta"}
 
-	info := gofetch.FetchAsync(tickers)
+info := gofetch.FetchAsync(tickers)
 
-	for _, item := range info {
-		fmt.Println(item.GetTicker(), item.GetPrice())
-	}
+for _, item := range info {
+    fmt.Println(item.GetTicker(), item.GetPrice())
+}
 ```
 
 The above code prints ticker names and prices into console:
