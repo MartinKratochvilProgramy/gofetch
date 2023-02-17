@@ -15,6 +15,14 @@ type TickerInfo struct {
 	price  float64
 }
 
+func (t TickerInfo) Name() string {
+	return t.ticker
+}
+
+func (t TickerInfo) Price() float64 {
+	return t.price
+}
+
 func FetchPrevClose(ticker string) *TickerInfo {
 	resp, err := http.Get("https://query1.finance.yahoo.com/v8/finance/chart/" + ticker)
 	if err != nil {
